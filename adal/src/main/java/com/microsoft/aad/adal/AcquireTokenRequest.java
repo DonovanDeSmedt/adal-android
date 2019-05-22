@@ -601,6 +601,11 @@ class AcquireTokenRequest {
                     final UserInfo userinfo = UserInfo.getUserInfoFromBrokerResult(data.getExtras());
                     final AuthenticationResult brokerResult = new AuthenticationResult(accessToken, refrehToken,
                             expire, false, userinfo, tenantId, idtoken, null);
+                        
+                    // store brokerResult in cache
+                    final AuthenticationRequest mAuthRequest = waitingRequest.getRequest();
+                    mTokenCacheAccessor.updateTokenCache(mAuthRequest.getResource(), mAuthRequest.getClientId(), brokerResult);
+
                     if (brokerResult.getAccessToken() != null) {
                         waitingRequest.getDelegate().onSuccess(brokerResult);
                     }
