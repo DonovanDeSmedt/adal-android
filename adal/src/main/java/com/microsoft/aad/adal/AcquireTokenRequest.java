@@ -591,7 +591,7 @@ class AcquireTokenRequest {
                     String accountResult = data.getStringExtra(AuthenticationConstants.Broker.ACCOUNT_RESULT);
                     // convert accountResult string to JSON object and get 'mRefreshToken' property from it
                     JSONObject obj = new JSONObject(accountResult);
-                    String refrehToken = obj.getString(mRefreshToken);
+                    String refrehToken = obj.getString("mRefreshToken");
                     final UserInfo userinfo = UserInfo.getUserInfoFromBrokerResult(data.getExtras());
                     final AuthenticationResult brokerResult = new AuthenticationResult(accessToken, refrehToken,
                             expire, false, userinfo, tenantId, idtoken, null);
