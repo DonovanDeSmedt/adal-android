@@ -1,0 +1,194 @@
+Version 1.12.0
+--------------
+Adding telemetry interfaces and event to ADAL
+Adding 2 modes of telemetry events
+Adding 2 new APIs for telemetry to the public interface of ADAL
+Add bound service to remove requirement for contacts permission when talking to broker.
+Fix for returning correct error code when using broker and no network connected.
+Fix for ADAL missing callbacks if the activity is killed
+Adding support for authority validation for ADFS
+Fixing Missing permissions handling for silent request
+Fixing a crash in the new service when unbind service fails
+Fixing loadSecretKeyForDecryption using the cached key without checking the blob
+Fixing a crash in application receiver due to empty string being passed to canSwitchToBroker
+
+Version 1.11.0
+--------------
+AuthRequest no longer waits for broker to install for broker auth.
+Remove the appended query string when responding to pkeyauth challenge.
+adding the pom.xml to gitignore.
+
+Version 1.10.0
+--------------
+Move from using Eclipse to Android Studio
+Upgrade the SDK to Marshmallow and Target SDK version to 23
+Fix to better support Marshmallow. If ADAL does not have permission to access the AccountManager when the broker needs to be invoked then ADAL will throw a specific exception.
+Add the capability for developer to ask for extended lifetime of AT in cases of outages and network errors.
+The code is Checkstyle, PMD, Findbugs and Lint warnings clean. These are now treated as compile errors.
+Fix for favoring RT in local cache over going to the broker.
+
+Version 1.2.2
+--------------
+Fix for silent RT request, if TokenCacheItem desn't contain RT, don't continue with RT request. 
+
+Version 1.2.1
+--------------
+Add certificate chain validation
+
+Version 1.2.0
+--------------
+Add support for family ClientId
+Add support for serialize/deserialize cache per user base
+Add FORCE_PROMPT support for authentication via broker
+Update to revert back the behaviour for calling acquireTokenSilentSync on main thread
+Add interface for telemetry events
+Fix date time parsing for 24 hour format
+Update to reuse existing sockets
+
+Version 1.1.19
+--------------
+(Hotfix) To avoid app crashing from runtime exceptions thrown by AndroidKeystore, catch and rethrow as checked exception
+
+Version 1.1.18
+--------------
+(Hotfix) Revert the checking for private key before unwrapping
+
+Version 1.1.17
+--------------
+Fix for checking retrieved private key before unwrapping symmetric key, avoid the crash for InvalidArgumentException when key data is wiped by keystore but not alias
+Update the cache lookup logic for multi-resource refresh token
+Update token cache removal logic to only remove stored token when receiving invalid_grant as oauth2 error
+Disable Family of Client Id feature
+Update readme for secret key generation and update sample for token acquisition flow with broker
+Add the function to turn-off hardware acceleration in AuthenticationActivity webview
+Add the function to resume broker request after clicking on "Get the app" page and install the broker app
+Update BrokerProxy to recognize company portal for adding account during conditional access flow
+
+Version 1.1.16
+--------------
+Hot fix for catching RuntimeException thrown due to AndroidKeyStore bug, so App won't crash due to keystore got reset
+
+Version 1.1.15
+--------------
+Update check for null to prevent null pointer exception
+Update AuthenticationException to extend from Exception instead of RuntimeException
+Update for PoliCheck result
+Type update for Challenge
+
+Version 1.1.14 (hot fix)
+--------------
+Add the support for FamilyClientID
+Fix the bug of redirect URI verification for silent request (hot fix)
+Refactor the broker usage flag and change the public API for using broker and broker is not used by default
+Add the UsageAuthenticationException to handle the errors that the developer might have made in their usage of ADAL
+Fix breaking tests
+
+Version 1.1.13
+--------------
+Remove catching generic exceptions and catch only expected ones
+Add broker redirect uri verify before talking to broker
+Fix for default token cache removing token when there is decryption failure
+Remove static class variable for solving decryption problem when two both broker apps are involved
+
+Version 1.1.12
+--------------
+Update cert prompt for TLS request(not responding to TLS request for device authentication)
+Update Travis to compile Android 21
+Remove warnings for unused code
+
+Version 1.1.11
+--------------
+Fix for reading tenant id, and expiration data from broker return
+Add support for authenticating user using client certificate
+Update target version to android 5
+
+Version 1.1.10
+--------------
+fix issue #420: pick up device cert based on either cert authority or cert thumbprint
+
+Version 1.1.9
+--------------
+fix issue #388, #407, #408
+
+Version 1.1.8
+--------------
+hide keyboard at on pause at AuthenticationActivity.
+Update applicationreceiver to use only Azure Authenticator as broker.
+Check broker user for multi account usage.
+fix issue #388, #407, #408
+
+Version 1.1.7
+--------------
+Fix issue with acquireTokenSilent for new authenticator version.
+
+Version 1.1.6
+--------------
+Fix issue with failing wpj through Azure Authenticator
+
+Version 1.1.5
+--------------
+Send extra query parameter to Authenticator with Bundle options
+
+Version 1.1.4
+--------------
+ApplicationReceiver to resume after install of Azure Authenticator
+Gson datetime adapter to handle locale changes
+
+Version 1.1.3
+--------------
+Update maven plugin
+Load resource from context for authenticationDialog
+add tenantid to refresh token result if idtoken is missing in the result
+
+Version 1.1.2
+--------------
+Fix for token broker handling
+Update to pom file for build automation
+
+Version 1.1.1
+--------------
+Enroll button fix
+Updated webviewhelper class
+
+
+Version 1.1.0
+--------------
+HttpAuth dialog for ntlm challange
+getBrokerUsers support
+whitelisted login.microsoftonline.com
+
+Version 1.0.9
+--------------
+Bug fixes for Oauth2.java and loginhint usage
+
+Version 1.0.8
+--------------
+Adding client metrics information to be sent to AAD
+Detect webui cancel
+Update logger for correlationid
+Update PRNGfixes to allow different providers to be installed
+
+Version 1.0.7
+--------------
+Send PkeyAuth flag from embeded adal usage.
+Fix issue with promptBehavior param in broker usage.
+
+Version 1.0.6
+--------------
+Fragment and dialog support
+
+Version 1.0.5
+--------------
+Change broker redirectUri requirement to msauth://packagename/base64urlencodedSignature
+
+Version 1.0.4
+--------------
+Intune specific fix: Rollback logic for connecting to authenticator
+Add version to logs
+
+Version 1.0.3
+--------------
+Release Date: 10-3-2014
+* Dismiss spinner to resolve some UI issues
+* Use broker signature and authenticator type for checks. Get broker package from authenticator.
+
