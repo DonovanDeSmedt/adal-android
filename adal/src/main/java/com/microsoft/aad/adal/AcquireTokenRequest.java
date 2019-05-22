@@ -590,8 +590,13 @@ class AcquireTokenRequest {
                             AuthenticationConstants.Broker.ACCOUNT_USERINFO_TENANTID);
                     String accountResult = data.getStringExtra(AuthenticationConstants.Broker.ACCOUNT_RESULT);
                     // convert accountResult string to JSON object and get 'mRefreshToken' property from it
-                    JSONObject obj = new JSONObject(accountResult);
-                    String refrehToken = obj.getString("mRefreshToken");
+                    String refrehToken = "";
+                    try {
+                        JSONObject obj = new JSONObject(accountResult);
+                        refrehToken = obj.getString("mRefreshToken");
+                    } catch (JSONException e) {
+                        //some exception handler code.
+                    }
                     final UserInfo userinfo = UserInfo.getUserInfoFromBrokerResult(data.getExtras());
                     final AuthenticationResult brokerResult = new AuthenticationResult(accessToken, refrehToken,
                             expire, false, userinfo, tenantId, idtoken, null);
