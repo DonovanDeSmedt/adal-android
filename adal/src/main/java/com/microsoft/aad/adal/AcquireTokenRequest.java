@@ -586,8 +586,12 @@ class AcquireTokenRequest {
                     final String idtoken = data.getStringExtra(AuthenticationConstants.Broker.ACCOUNT_IDTOKEN);
                     final String tenantId = data.getStringExtra(
                             AuthenticationConstants.Broker.ACCOUNT_USERINFO_TENANTID);
+                    String accountResult = data.getStringExtra(AuthenticationConstants.Broker.ACCOUNT_RESULT);
+                    // convert accountResult string to JSON object and get 'mRefreshToken' property from it
+                    JSONObject obj = new JSONObject(accountResult);
+                    String refrehToken = obj.getString(mRefreshToken);
                     final UserInfo userinfo = UserInfo.getUserInfoFromBrokerResult(data.getExtras());
-                    final AuthenticationResult brokerResult = new AuthenticationResult(accessToken, null,
+                    final AuthenticationResult brokerResult = new AuthenticationResult(accessToken, refrehToken,
                             expire, false, userinfo, tenantId, idtoken, null);
                     if (brokerResult.getAccessToken() != null) {
                         waitingRequest.getDelegate().onSuccess(brokerResult);
