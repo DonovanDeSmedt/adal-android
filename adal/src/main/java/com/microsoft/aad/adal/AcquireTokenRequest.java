@@ -32,6 +32,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import org.json.JSONObject;
+import org.json.JSONException;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
